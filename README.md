@@ -10,7 +10,7 @@ Sitio web de la panadería artesanal **Guanábana Horneada** (Víctor Larco, Tru
 
 - React 19 + TypeScript + Vite 8
 - Tailwind CSS 4 (tokens en `src/index.css`)
-- Framer Motion (animaciones), Leaflet (mapa), Lucide (iconos)
+- Framer Motion (animaciones), Google Maps embebido (mapas), Lucide (iconos)
 - Supabase (catálogo, autenticación y almacenamiento de imágenes)
 
 ## Desarrollo

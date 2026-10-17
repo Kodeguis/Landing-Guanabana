@@ -1,26 +1,52 @@
-import React, { useState } from 'react';
-import { ArrowRight, MapPin, ShoppingBag } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ArrowLeftRight, ArrowRight, MapPin, ShoppingBag } from 'lucide-react';
 import { InstagramIcon } from './SocialIcons';
 import { AGUA_AZUCAR, SITE } from '../data/content';
 
 type Brand = 'guanabana' | 'agua';
 
+const hasFinePointer = () =>
+  typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
 export const HeroBrandCards: React.FC = () => {
   const [active, setActive] = useState<Brand>('guanabana');
+  const [canHover, setCanHover] = useState<boolean>(hasFinePointer);
 
   const cardClass = (brand: Brand) => {
     const isFront = active === brand;
+    const backSide = brand === 'agua' ? 'translate-x-4 sm:translate-x-6' : '-translate-x-4 sm:-translate-x-6';
     return [
       'absolute inset-x-0 top-0 flex min-h-[27rem] flex-col rounded-[2rem] border border-primary/15 bg-white p-5 shadow-card transition-all duration-500 ease-out sm:p-7',
       isFront
         ? 'z-20 translate-x-0 rotate-1 opacity-100'
-        : 'pointer-events-none z-10 -translate-x-4 -rotate-2 scale-[0.97] opacity-95 sm:-translate-x-6',
+        : `pointer-events-none z-10 ${backSide} scale-[0.97] opacity-95 ${brand === 'agua' ? 'rotate-2' : '-rotate-2'}`,
     ].join(' ');
+  };
+
+  // Con mouse: mover el cursor hacia la izquierda muestra Guanábana y hacia la
+  // derecha muestra Agua y Azúcar (como en la maqueta). En táctil se usan los botones.
+  useEffect(() => {
+    const media = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const update = () => setCanHover(media.matches);
+    update();
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, []);
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!canHover || event.pointerType !== 'mouse') return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const relativeX = (event.clientX - rect.left) / rect.width;
+    if (relativeX > 0.72) {
+      setActive('agua');
+    } else if (relativeX < 0.28) {
+      setActive('guanabana');
+    }
   };
 
   return (
     <div className="w-full max-w-[30rem]">
-      <div className="relative h-[29rem] sm:h-[30rem]">
+      <div className="relative h-[29rem] select-none sm:h-[30rem]" onPointerMove={handlePointerMove}>
         {/* Agua y Azúcar — card behind / front depending on the selected tab */}
         <article className={cardClass('agua')} aria-hidden={active !== 'agua'} inert={active !== 'agua'}>
           <div className="flex items-center justify-between gap-2">
@@ -109,7 +135,12 @@ export const HeroBrandCards: React.FC = () => {
         </article>
       </div>
 
-      <div className="mt-5 flex items-center justify-center gap-2" role="group" aria-label="Elige la marca que quieres ver">
+      {!canHover && (
+        <div
+          className="mt-5 flex items-center justify-center gap-2"
+          role="group"
+          aria-label="Elige la marca que quieres ver"
+        >
         <button
           type="button"
           onClick={() => setActive('guanabana')}
@@ -140,7 +171,15 @@ export const HeroBrandCards: React.FC = () => {
             className={`h-3 w-3 transition-transform ${active === 'agua' ? 'translate-x-0' : '-translate-x-1 opacity-0'}`}
           />
         </button>
-      </div>
+        </div>
+      )}
+
+      {canHover && (
+        <p className="mt-4 flex items-center justify-center gap-1.5 text-[11px] font-semibold text-dark-muted">
+          <ArrowLeftRight className="h-3.5 w-3.5 text-primary" />
+          Mueve el cursor a los lados para ver ambas marcas
+        </p>
+      )}
     </div>
   );
 };

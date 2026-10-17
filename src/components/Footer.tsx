@@ -70,7 +70,7 @@ export const Footer: React.FC = () => {
             <h2 className="font-display text-sm uppercase tracking-[0.14em] text-primary">Punto de encuentro</h2>
             <div className="mt-4 space-y-1.5 text-sm leading-relaxed text-warm-cream/75">
               <a
-                href={SITE.mapsUrl}
+                href={SITE.directionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block transition-colors hover:text-primary-light"

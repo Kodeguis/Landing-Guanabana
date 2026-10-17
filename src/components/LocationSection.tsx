@@ -1,14 +1,7 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { CheckCircle2, Clock, ExternalLink, MapPin, Navigation } from 'lucide-react';
 import { GuanabanoChef } from './GuanabanoChef';
 import { HOURS, HOURS_NOTE, SITE } from '../data/content';
-
-const InteractiveMap = React.lazy(() =>
-  import('./InteractiveMap').then((module) => ({ default: module.InteractiveMap }))
-);
-
-const LATITUDE = -8.1273804;
-const LONGITUDE = -79.04438;
 
 export const LocationSection: React.FC = () => {
   return (
@@ -35,7 +28,7 @@ export const LocationSection: React.FC = () => {
               <h3 className="mt-1 font-display text-xl text-dark-neutral sm:text-2xl">{SITE.legalName}</h3>
               <p className="mt-2 text-sm leading-relaxed text-dark-muted">{SITE.address}</p>
               <a
-                href={SITE.mapsUrl}
+                href={SITE.directionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-primary-hover"
@@ -76,18 +69,23 @@ export const LocationSection: React.FC = () => {
 
           <div className="lg:col-span-7">
             <div className="relative min-h-[26rem] overflow-hidden rounded-[2rem] border border-primary/20 bg-guanabana-light shadow-card sm:min-h-[30rem] lg:h-full">
-              <Suspense fallback={<div className="h-full min-h-[26rem] w-full animate-pulse bg-guanabana-light" aria-hidden="true" />}>
-                <InteractiveMap lat={LATITUDE} lng={LONGITUDE} mapsUrl={SITE.mapsUrl} />
-              </Suspense>
+              <iframe
+                title="Mapa de Google con la ubicación de Guanábana Horneada en Víctor Larco Herrera, Trujillo"
+                src={SITE.placeEmbedUrl}
+                className="absolute inset-0 h-full w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
 
-              <div className="absolute left-4 top-4 z-[500] flex max-w-[calc(100%-2rem)] flex-wrap items-center gap-2.5 rounded-2xl border border-primary/15 bg-white/95 p-3 shadow-card backdrop-blur-sm">
+              <div className="absolute bottom-4 left-4 z-10 flex max-w-[calc(100%-2rem)] flex-wrap items-center gap-2.5 rounded-2xl border border-primary/15 bg-white/95 p-3 shadow-card backdrop-blur-sm sm:max-w-sm">
                 <GuanabanoChef variant="avatar" size={38} />
-                <div className="min-w-0">
-                  <p className="truncate text-[11px] font-bold text-dark-neutral">Guanábana Horneada S.A.C.</p>
-                  <p className="truncate text-[10px] text-dark-muted">{SITE.shortAddress}</p>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[11px] font-bold leading-tight text-dark-neutral">Guanábana Horneada S.A.C.</p>
+                  <p className="mt-0.5 text-[10px] leading-tight text-dark-muted">{SITE.shortAddress}</p>
                 </div>
                 <a
-                  href={SITE.mapsUrl}
+                  href={SITE.directionsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-2 text-[11px] font-bold text-white transition-colors hover:bg-primary-hover"
