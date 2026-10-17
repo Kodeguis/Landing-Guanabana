@@ -38,6 +38,30 @@ VITE_SUPABASE_ANON_KEY=tu-clave-anon-publica
 
 > Importante: en Supabase, desactiva el registro público (*Authentication → Providers → Email → Allow new users to sign up*) para que solo tu usuario pueda editar el catálogo mediante las políticas RLS de administrador.
 
+## Despliegue en Vercel
+
+El proyecto ya incluye `vercel.json` con el build correcto y la reescritura SPA necesaria para que `https://tu-dominio/admin` funcione (sin ella, entrar directo a `/admin` daría 404).
+
+1. Sube el proyecto a un repositorio de GitHub (incluye `vercel.json`; `.env` **no** se sube).
+2. En [vercel.com/new](https://vercel.com/new) importa el repositorio. Vercel detecta Vite automáticamente:
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+3. En **Settings → Environment Variables** agrega, para Production y Preview:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+4. Deploy. Las variables se incrustan en el build: si las cambias, hay que **redeployar**.
+5. En Supabase → **Authentication → URL Configuration**, pon la URL de Vercel como *Site URL* y agrégala en *Redirect URLs*.
+6. (Opcional) **Settings → Domains** para conectar tu dominio propio.
+
+> Sin las variables de Supabase, el sitio se despliega en **modo demo**: el catálogo es local al navegador y el panel `/admin` queda abierto para cualquiera. Configura Supabase antes de publicar.
+
+Alternativa con CLI:
+
+```bash
+npx vercel          # primer deploy (preview)
+npx vercel --prod   # deploy a producción
+```
+
 ## Estructura
 
 ```
