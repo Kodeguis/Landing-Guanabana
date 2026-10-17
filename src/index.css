@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #bc782e;
+  --color-primary-hover: #9e611e;
+  --color-primary-light: #f4e2cd;
+  --color-guanabana: #95ae51;
+  --color-guanabana-dark: #78903b;
+  --color-guanabana-deep: #475c1c;
+  --color-guanabana-light: #ebf3d3;
+  --color-warm-cream: #ffffe3;
+  --color-organic-lime: #f7ffdc;
+  --color-section-lime: #f3f9df;
+  --color-dark-neutral: #2c2621;
+  --color-dark-muted: #5c5248;
+  --color-thanks: #3f5a20;
+  --color-thanks-deep: #2f4417;
+
+  --font-display: "Fredoka", ui-rounded, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+
+  --shadow-card: 0 18px 50px rgba(44, 38, 33, 0.12);
+  --shadow-soft: 0 8px 24px rgba(44, 38, 33, 0.08);
+  --shadow-lift: 0 24px 60px rgba(188, 120, 46, 0.2);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6.5rem;
+  }
+
+  body {
+    background-color: var(--color-warm-cream);
+    color: var(--color-dark-neutral);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background-color: rgba(149, 174, 81, 0.35);
+    color: var(--color-dark-neutral);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em];
+  }
+
+  .pattern-checker {
+    background-image:
+      linear-gradient(45deg, rgba(188, 120, 46, 0.07) 25%, transparent 25%, transparent 75%, rgba(188, 120, 46, 0.07) 75%),
+      linear-gradient(45deg, rgba(188, 120, 46, 0.07) 25%, transparent 25%, transparent 75%, rgba(188, 120, 46, 0.07) 75%);
+    background-size: 26px 26px;
+    background-position: 0 0, 13px 13px;
+  }
+
+  .pattern-map {
+    background-image:
+      linear-gradient(rgba(149, 174, 81, 0.16) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(149, 174, 81, 0.16) 1px, transparent 1px),
+      linear-gradient(120deg, rgba(188, 120, 46, 0.14) 0 22%, transparent 22% 46%, rgba(188, 120, 46, 0.14) 46% 60%, transparent 60%);
+    background-size:
+      46px 46px,
+      46px 46px,
+      100% 100%;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* ---------- Leaflet ---------- */
+.leaflet-container {
+  font-family: var(--font-sans);
+  background: #eef3dc;
+}
+
+.leaflet-bottom.leaflet-right .leaflet-control-zoom {
+  margin-right: 18px !important;
+  margin-bottom: 28px !important;
+  border: 2px solid #bc782e !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 16px rgba(44, 38, 33, 0.28) !important;
+  z-index: 500 !important;
+}
+
+.leaflet-control-zoom a {
+  background-color: #ffffff !important;
+  color: #2c2621 !important;
+  width: 36px !important;
+  height: 36px !important;
+  line-height: 34px !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: #f7ffdc !important;
+  color: #78903b !important;
+}
+
+.leaflet-control-zoom a:first-child {
+  border-bottom: 1.5px solid rgba(188, 120, 46, 0.25) !important;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 16px !important;
+  box-shadow: 0 14px 40px rgba(44, 38, 33, 0.22) !important;
+}
+
+.leaflet-popup-content {
+  margin: 12px !important;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffe3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d7cca8;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #bc782e;
+}
