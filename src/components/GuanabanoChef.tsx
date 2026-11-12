@@ -1,4 +1,5 @@
 import React from 'react';
+import { assetUrl } from '../lib/assets';
 
 interface GuanabanoChefProps {
   variant?: 'avatar' | 'official' | 'kneading' | 'resting' | 'baking' | 'running' | 'waving';
@@ -6,7 +7,7 @@ interface GuanabanoChefProps {
   size?: number;
 }
 
-const AVATAR_SRC = '/guanabana-chef.jpg';
+const AVATAR_SRC = assetUrl('/guanabana-chef.jpg');
 
 export const GuanabanoChef: React.FC<GuanabanoChefProps> = ({ variant = 'official', className = '', size }) => {
   if (variant === 'avatar') {
@@ -37,12 +38,12 @@ export const GuanabanoChef: React.FC<GuanabanoChefProps> = ({ variant = 'officia
 
   const crocSrc =
     variant === 'kneading'
-      ? '/croc-kneading.png'
+      ? assetUrl('/croc-kneading.png')
       : variant === 'resting'
-        ? '/croc-resting.png'
+        ? assetUrl('/croc-resting.png')
         : variant === 'baking'
-          ? '/croc-baking.png'
-          : '/croc-running.png';
+          ? assetUrl('/croc-baking.png')
+          : assetUrl('/croc-running.png');
 
   return (
     <span className={`relative inline-flex select-none items-center justify-center ${className}`}>

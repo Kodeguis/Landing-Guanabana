@@ -1,12 +1,13 @@
 import React from 'react';
 import { Heart } from 'lucide-react';
+import { assetUrl } from '../lib/assets';
 
 const CROCS = [
-  { src: '/croc-baking.png', alt: 'Cocodrilo panadero con su pan horneado' },
-  { src: '/croc-kneading.png', alt: 'Cocodrilo panadero amasando' },
-  { src: '/croc-running-bread.png', alt: 'Cocodrilo panadero corriendo con su pan' },
-  { src: '/croc-resting.png', alt: 'Cocodrilo panadero descansando la masa' },
-  { src: '/croc-waving.png', alt: 'Cocodrilo panadero saludando' },
+  { src: assetUrl('/croc-baking.png'), alt: 'Cocodrilo panadero con su pan horneado' },
+  { src: assetUrl('/croc-kneading.png'), alt: 'Cocodrilo panadero amasando' },
+  { src: assetUrl('/croc-running-bread.png'), alt: 'Cocodrilo panadero corriendo con su pan' },
+  { src: assetUrl('/croc-resting.png'), alt: 'Cocodrilo panadero descansando la masa' },
+  { src: assetUrl('/croc-waving.png'), alt: 'Cocodrilo panadero saludando' },
 ];
 
 export const ThanksSection: React.FC = () => {

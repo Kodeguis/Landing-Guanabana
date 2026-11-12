@@ -61,7 +61,7 @@ export const HeroBrandCards: React.FC = () => {
 
           <div className="flex flex-1 flex-col items-center justify-center py-5 text-center">
             <div className="grid h-40 w-40 place-items-center rounded-full border border-primary/25 bg-white p-6 shadow-inner sm:h-44 sm:w-44">
-              <img src={AGUA_AZUCAR.logo} alt="Agua y Azúcar" className="h-full w-full object-contain" />
+              <img src={assetUrl(AGUA_AZUCAR.logo)} alt="Agua y Azúcar" className="h-full w-full object-contain" />
             </div>
             <span className="mt-4 rounded-xl border border-primary/20 bg-white px-3.5 py-1.5 text-xs font-semibold text-dark-muted">
               {AGUA_AZUCAR.description}
