@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Menu, MessageCircle, ShoppingBag, X } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { NAV_LINKS, SITE, CONSULT_MESSAGE, whatsappUrl } from '../data/content';
+import { assetUrl } from '../lib/assets';
 
 export const Navbar: React.FC = () => {
   const { totalItemsCount, setIsCartOpen } = useCart();
@@ -36,7 +37,7 @@ export const Navbar: React.FC = () => {
         <div className="container-page flex h-[4.5rem] items-center justify-between gap-3 sm:h-20">
           <a href="#inicio" className="flex min-w-0 items-center gap-2.5 sm:gap-3" aria-label="Guanábana Horneada, inicio">
             <span className="h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-guanabana/40 bg-white sm:h-11 sm:w-11">
-              <img src="/guanabana-chef.jpg" alt="" className="h-full w-full object-cover" />
+              <img src={assetUrl('/guanabana-chef.jpg')} alt="" className="h-full w-full object-cover" />
             </span>
             <span className="min-w-0">
               <span className="block truncate font-display text-lg leading-none sm:text-xl">

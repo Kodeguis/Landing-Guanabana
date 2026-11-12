@@ -89,12 +89,6 @@ export const Footer: React.FC = () => {
         <div className="flex flex-col items-center justify-between gap-3 pt-6 text-xs text-warm-cream/50 sm:flex-row">
           <p>
             © {CURRENT_YEAR} {SITE.legalName}. Todos los derechos reservados.
-            <a
-              href="/admin"
-              className="ml-2 font-mono text-[10px] text-warm-cream/20 transition-colors hover:text-warm-cream/60"
-            >
-              [admin]
-            </a>
           </p>
           <p className="flex items-center gap-1">
             <span>Hecho con</span>

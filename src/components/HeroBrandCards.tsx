@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ArrowLeftRight, ArrowRight, MapPin, ShoppingBag } from 'lucide-react';
 import { InstagramIcon } from './SocialIcons';
 import { AGUA_AZUCAR, SITE } from '../data/content';
+import { assetUrl } from '../lib/assets';
 
 type Brand = 'guanabana' | 'agua';
 
@@ -98,7 +99,7 @@ export const HeroBrandCards: React.FC = () => {
             <div className="relative grid h-40 w-40 place-items-center rounded-full border border-guanabana/30 bg-gradient-to-b from-guanabana/25 via-warm-cream to-primary/15 p-2.5 sm:h-44 sm:w-44">
               <div className="h-full w-full overflow-hidden rounded-full border-4 border-white bg-white shadow-md">
                 <img
-                  src="/guanabana-chef.jpg"
+                  src={assetUrl('/guanabana-chef.jpg')}
                   alt="Cocodrilo chef, mascota de Guanábana Horneada"
                   className="h-full w-full object-cover"
                 />

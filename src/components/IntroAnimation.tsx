@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { assetUrl } from '../lib/assets';
 
 interface IntroAnimationProps {
   onComplete?: () => void;
@@ -278,7 +279,7 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete, onEx
 
                 {/* Official Crocodile Running with Bread Illustration */}
                 <img
-                  src="/croc-running-bread.png"
+                  src={assetUrl('/croc-running-bread.png')}
                   alt="Guanábano Chef corriendo con su pan"
                   className="w-full h-auto drop-shadow-[0_16px_28px_rgba(0,0,0,0.4)] select-none"
                   draggable={false}

@@ -1,6 +1,6 @@
 import type { Product } from '../types';
 
-export const OFFICIAL_PHONE = "51949123456"; // Número para WhatsApp de Guanábana Horneada
+export const OFFICIAL_PHONE = "51936924478"; // Número oficial de WhatsApp de Guanábana Horneada
 
 export const PRODUCTS: Product[] = [
   {

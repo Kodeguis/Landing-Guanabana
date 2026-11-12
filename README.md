@@ -1,87 +1,142 @@
-# Guanábana Horneada
+<div align="center">
 
-Sitio web de la panadería artesanal **Guanábana Horneada** (Víctor Larco, Trujillo) y panel de administración del catálogo.
+<img src="docs/screenshots/landing-hero.png" alt="Landing de Guanábana Horneada" width="100%" />
 
-- **Tienda online**: hero con las marcas Guanábana Horneada y Agua y Azúcar, carta con fotos, FAQ, puntos aliados, ubicación con mapa, sección de agradecimiento y carrito que envía el pedido a WhatsApp.
-- **Panel admin** (`/admin`): editar productos, precios, disponibilidad y **subir fotos** de cada producto.
-- **Animación de intro** con el cocodrilo panadero.
+# 🐊🥖 Guanábana Horneada — Landing
 
-## Stack
+**Landing oficial de la panadería artesanal de masa madre en Víctor Larco, Trujillo.**
 
-- React 19 + TypeScript + Vite 8
-- Tailwind CSS 4 (tokens en `src/index.css`)
-- Framer Motion (animaciones), Google Maps embebido (mapas), Lucide (iconos)
-- Supabase (catálogo, autenticación y almacenamiento de imágenes)
+Una experiencia cálida para mostrar la carta, contar la historia del obrador, ubicar el taller y llevar el pedido a WhatsApp sin fricción.
 
-## Desarrollo
+[🌐 Ver demo en GitHub Pages](https://kodeguis.github.io/Landing-Guanabana/) ·
+[🍞 Ver la carta](#la-carta) ·
+[🚀 Cómo usarla](#cómo-usarla)
+
+<br />
+
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-Catalogo-3FCF8E?logo=supabase&logoColor=white)
+![GitHub Pages](https://img.shields.io/badge/Preview-GitHub_Pages-222?logo=githubpages&logoColor=white)
+
+</div>
+
+## ✨ Qué es
+
+Esta landing presenta a **Guanábana Horneada**, una panadería y confitería artesanal de Trujillo. No es un e-commerce con pasarela de pago: es una vitrina digital pensada para que el cliente conozca el producto y **cierre el pedido por WhatsApp**.
+
+- **Hero animado** con la mascota cocodrilo y las marcas Guanábana Horneada / Agua y Azúcar.
+- **Carta visual** con fotos, precios, badges e ingredientes.
+- **Carrito** con resumen y mensaje listo para WhatsApp.
+- **Secciones de marca**: historia, aliados, mapa de ubicación, preguntas frecuentes y agradecimiento.
+- **Diseño responsive** con una intro animada y detalles de movimiento.
+- **Catálogo en Supabase** (opcional): si no hay credenciales, funciona con el catálogo demo local.
+
+> El **ERP, el backend del bot y la gestión de pedidos/stock** viven en un repositorio privado separado. Esta landing es la cara pública.
+
+## 📸 Vista previa
+
+<div align="center">
+  <img src="docs/screenshots/landing-hero.png" alt="Inicio de la landing" width="80%" />
+  <br /><br />
+  <img src="docs/screenshots/landing-aliados.png" alt="Aliados y mapa" width="80%" />
+  <br /><br />
+  <img src="docs/screenshots/landing-mobile.png" alt="Landing en móvil" width="45%" />
+</div>
+
+También puedes abrir la **[demo publicada en GitHub Pages](https://kodeguis.github.io/Landing-Guanabana/)**.
+
+## 🧭 Cómo usarla
+
+### Navegar la landing
+
+1. Abre la demo o ejecuta el proyecto localmente.
+2. Recorre el hero, la carta, los aliados y el mapa desde el menú superior.
+3. En la carta, pulsa **Agregar al pedido** para armar el carrito.
+4. Abre el carrito, completa tus datos y pulsa **Enviar pedido a WhatsApp**.
+5. Se abrirá WhatsApp con el resumen del pedido listo para enviar al número oficial.
+
+### Ejecutarla localmente
+
+Requisitos: **Node.js 20.19+** y npm.
 
 ```bash
 npm install
-npm run dev      # servidor local
-npm run build    # type-check + build de producción
-npm run lint     # oxlint
+npm run dev
 ```
 
-## Conectar Supabase (opcional)
+Se abre en `http://localhost:5173`.
 
-Sin variables de entorno la app funciona en **modo demo** (catálogo local con `localStorage` y admin sin contraseña).
-
-1. Crea un proyecto en [supabase.com](https://supabase.com).
-2. Ejecuta `supabase/schema.sql` en el **SQL Editor** (tabla, RLS, realtime, bucket de imágenes y productos iniciales).
-3. Crea tu usuario administrador en **Authentication → Users**.
-4. Copia `.env.example` a `.env` con las credenciales de **Project Settings → API**:
-
-```
-VITE_SUPABASE_URL=https://tu-proyecto.supabase.co
-VITE_SUPABASE_ANON_KEY=tu-clave-anon-publica
-```
-
-> Importante: en Supabase, desactiva el registro público (*Authentication → Providers → Email → Allow new users to sign up*) para que solo tu usuario pueda editar el catálogo mediante las políticas RLS de administrador.
-
-## Despliegue en Vercel
-
-El proyecto ya incluye `vercel.json` con el build correcto y la reescritura SPA necesaria para que `https://tu-dominio/admin` funcione (sin ella, entrar directo a `/admin` daría 404).
-
-1. Sube el proyecto a un repositorio de GitHub (incluye `vercel.json`; `.env` **no** se sube).
-2. En [vercel.com/new](https://vercel.com/new) importa el repositorio. Vercel detecta Vite automáticamente:
-   - Build Command: `npm run build`
-   - Output Directory: `dist`
-3. En **Settings → Environment Variables** agrega, para Production y Preview:
-   - `VITE_SUPABASE_URL`
-   - `VITE_SUPABASE_ANON_KEY`
-4. Deploy. Las variables se incrustan en el build: si las cambias, hay que **redeployar**.
-5. En Supabase → **Authentication → URL Configuration**, pon la URL de Vercel como *Site URL* y agrégala en *Redirect URLs*.
-6. (Opcional) **Settings → Domains** para conectar tu dominio propio.
-
-> Sin las variables de Supabase, el sitio se despliega en **modo demo**: el catálogo es local al navegador y el panel `/admin` queda abierto para cualquiera. Configura Supabase antes de publicar.
-
-Alternativa con CLI:
+### Construir y previsualizar producción
 
 ```bash
-npx vercel          # primer deploy (preview)
-npx vercel --prod   # deploy a producción
+npm run build
+npm run preview
 ```
 
-## Estructura
+### Conectar Supabase (opcional)
 
-```
+Sin variables de entorno se usa el catálogo demo local. Para leer el catálogo real:
+
+1. Copia `.env.example` a `.env`.
+2. Completa:
+   ```env
+   VITE_SUPABASE_URL=https://<proyecto>.supabase.co
+   VITE_SUPABASE_ANON_KEY=<publishable-key>
+   ```
+3. El catálogo se carga desde la tabla `products` de Supabase.
+4. Si el backend de pedidos está disponible, agrega:
+   ```env
+   VITE_API_URL=https://bot.tudominio.com
+   ```
+
+## 🚀 Deploy
+
+### GitHub Pages (incluido)
+
+El workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) compila y publica la landing en **GitHub Pages** en cada push a `main`.
+
+- URL: `https://kodeguis.github.io/Landing-Guanabana/`
+- Build base: `VITE_BASE_PATH=/Landing-Guanabana/`
+
+### Vercel
+
+1. Importa el repo en [vercel.com/new](https://vercel.com/new).
+2. Build Command: `npm run build` · Output Directory: `dist`.
+3. Variables: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` y, si aplica, `VITE_API_URL`.
+4. Deploy.
+
+> `vercel.json` ya incluye la reescritura SPA para `/admin` (el admin real vive en el repo privado del ERP).
+
+## 🧱 Stack y estructura
+
+- **React 19** + **TypeScript** + **Vite 8**
+- **Tailwind CSS 4** (tokens de diseño en `src/index.css`)
+- **Framer Motion** para la intro y transiciones
+- **Lucide** para iconografía
+- **Supabase** para catálogo en vivo (opcional)
+- **GitHub Actions + Pages** para la vista previa
+
+```text
 src/
-  components/   Tienda: Navbar, Hero, HeroBrandCards, MenuSection, ProductCard,
-                FAQSection, AlliesSection, LocationSection, ThanksSection, Footer, CartDrawer
-  admin/        Login, dashboard y modal de producto (fotos incluidas)
-  context/      ProductContext (Supabase + realtime) y CartContext (carrito + WhatsApp)
-  data/         content.ts (textos, aliados, FAQ, horarios) y products.ts (catálogo demo)
-  lib/          Cliente Supabase y mapeo de datos
-  index.css     Tokens de diseño, patrones y estilos de Leaflet
-supabase/schema.sql
+  components/   Hero, carta, carrito, aliados, mapa, FAQ y footer
+  context/      Catálogo y carrito
+  data/         Textos, productos demo y configuración del negocio
+  lib/          Cliente Supabase y utilidades
+public/         Mascota, fotos y assets de marca
+docs/           Capturas para el README
 ```
 
-## Carrito y WhatsApp
+## 🐊 Créditos
 
-El carrito guarda solo el producto y la cantidad, y se sincroniza con el catálogo en vivo (precios y fotos siempre actualizados). Al enviar el pedido se valida el nombre y la dirección de delivery, se genera un **código de pedido** y se abre WhatsApp con el mensaje completo (productos, subtotal, modalidad, cliente, dirección, referencia y notas). El número de WhatsApp se define en `src/data/products.ts` (`OFFICIAL_PHONE`).
+Diseño y desarrollo para **Guanábana Horneada** · Víctor Larco Herrera, Trujillo, Perú.
 
-## Contenido editable
+Hecho con masa madre, cariño y un cocodrilo panadero.
 
-- Textos, horarios (24 h), puntos aliados y FAQ: `src/data/content.ts`
-- Productos y etiquetas: `src/data/products.ts` (demo) o el panel `/admin` (con Supabase)
-- Fotos de productos: panel `/admin` → Editar producto → Subir foto
+---
+
+<div align="center">
+  <sub>Landing pública. El sistema de pedidos, stock y bot de WhatsApp se gestiona en un repositorio privado.</sub>
+</div>

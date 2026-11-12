@@ -29,5 +29,7 @@ dist-ssr
 # Testing, Reviews & MCP
 .playwright-mcp
 screenshots/
+!docs/screenshots/
+!docs/screenshots/*.png
 figma-review/
 review-implementation/
