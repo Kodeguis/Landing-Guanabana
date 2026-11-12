@@ -9,7 +9,7 @@
 Una experiencia cálida para mostrar la carta, contar la historia del obrador, ubicar el taller y llevar el pedido a WhatsApp sin fricción.
 
 [🌐 Ver demo en GitHub Pages](https://kodeguis.github.io/Landing-Guanabana/) ·
-[🍞 Ver la carta](#la-carta) ·
+[🍞 Ver la carta](#carta) ·
 [🚀 Cómo usarla](#cómo-usarla)
 
 <br />
